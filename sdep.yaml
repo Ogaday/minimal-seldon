@@ -1,0 +1,21 @@
+apiVersion: machinelearning.seldon.io/v1alpha2
+kind: SeldonDeployment
+metadata:
+  name: identity
+  namespace: models
+spec:
+  name: identity-model
+  predictors:
+  - componentSpecs:
+    - spec:
+        containers:
+        - name: model
+          image: ogaday/identity:0.1.0
+    graph:
+      children: []
+      endpoint:
+        type: REST
+      name: model
+      type: MODEL
+    name: model
+    replicas: 1
